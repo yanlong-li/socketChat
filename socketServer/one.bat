@@ -1,2 +1,1 @@
-npm install -save socket.io
-npm install -save express
+@echo install express && npm install --save express && @echo install socket.io && npm install --save socket.io && @echo 安装完成 && pause &&start cmd /k start.bat
