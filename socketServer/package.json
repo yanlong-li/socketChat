@@ -1,0 +1,24 @@
+{
+  "name": "imsystem",
+  "version": "1.0.0",
+  "description": "Yanlongli即时通讯系统",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.15.2",
+    "socket.io": "^1.7.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Yanlong-LI/socketChat.git"
+  },
+  "author": "Yanlongli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yanlong-LI/socketChat/issues"
+  },
+  "homepage": "https://github.com/Yanlong-LI/socketChat#readme"
+}

@@ -1,0 +1,176 @@
+@font-face {
+	font-family: "GLYPHICONS Halflings";
+	src: url('/fonts/glyphicons-halflings-regular.ttf');
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.chat {
+	background: red;
+}
+
+.chat .chatList {
+	background: #333740;
+	padding: 0;
+	/*border-radius: 0px 0 ;*/
+	height: 600px;
+	overflow: auto;
+}
+.chat .chatList .list-group {
+	margin-bottom: 0px;
+}
+.chat .chatList .list-group .list-group-item {
+	background: #ece9e8;
+	cursor:default;
+}
+
+.chat .chatList .list-group .list-group-item:hover {
+	background: #dedcdb;
+}
+
+.page-header {
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+}
+
+.chat .chatRoomBox {
+	background: #5d616d;
+	height: 600px;
+	padding: 0px;
+}
+
+.chat .chatRoomBox .chatRoomList {
+	height: 600px;
+	padding: 0px;
+	background: #f5f5f5;
+}
+
+.chatRoom .title {
+	color: black;
+	font-size: 23px;
+	padding: 10px 0px 10px 40px;
+	border-bottom: 1px solid #e7e7e7;
+	/*text-align: center;*/
+}
+
+.chatMessageBox {
+	height: 400px;
+	overflow: auto;
+}
+
+.chatMessageBox .chatMessage {
+	padding: 10px 40px;
+}
+
+.chatMessageBox .chatMessage .systemInfo_join{
+	text-align: center;
+	color: red;
+	background: #dadada;
+	width: auto;
+}
+.chatMessageBox .chatMessage .systemInfo_exit{
+	text-align: center;
+	color: yellow;
+	background: #dadada;
+	width: auto;
+}
+.chatMessageBox ul li {
+	word-break: break-all;
+	width: 100%;
+	/*max-width: 600px;*/
+	/*	background: red;*/
+	margin-top: 15px;
+}
+
+.chatMessageBox ul li .msg {
+	float: left;
+	/*margin-left:45px ;*/
+	margin-top: 5px;
+	max-width: 600px;
+	width: auto;
+	background: white;
+	border-radius: 10px;
+	padding: 5px 15px;
+}
+.chatMessageBox ul li .username{
+	float: left;
+}
+.MyMessage {
+	margin-right: 5px;
+	max-width: 600px;
+	width: auto;
+	background: #9eea6a;
+	border-radius: 10px;
+	padding: 5px 15px;
+	float: right;
+}
+
+li {
+	list-style: none;
+}
+
+.userAvatar {
+	
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	padding: 0px;
+	margin: 0px;
+}
+
+.MyUserAvatar {
+	float: right;
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	padding: 0px;
+	margin: 0px;
+}
+.MyMessageStatus{
+	float: right;
+}
+.chatMessageInputBox {
+	width: 100%;
+	border-top: 1px solid #e7e7e7;
+	height: 150px;
+	/*background: red;*/
+	position: absolute;
+	bottom: 0px;
+}
+
+.chatMessageInput {
+	border: 0px;
+	width: 100%;
+	padding: 20px;
+	/*margin: 0 auto;*/
+	background: #EEEEEE;
+	height: 110px;
+	outline: none;
+}
+.chatMessageInput:focus{
+	background: white;
+}
+.chat .chatList .list-group .selectListActive{
+	z-index: 10;
+	font-weight: bold;
+	background: #c5c5c5;
+}
+.chat .chatList .list-group .selectListActive:hover{
+		background: #c5c5c5;
+}
+.badge{
+	background: red;
+}
+.send{
+	margin-right: 30px;
+	float: right;
+}
+.systemInfoInput{
+	float: right;
+	margin-right: 15px;
+	line-height: 35px;
+}

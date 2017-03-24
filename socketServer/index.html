@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+
+	<head>
+		<title>世道健康养生会馆管理通讯平台</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			
+			body {
+				font: 13px Helvetica, Arial;
+			}
+			
+			form {
+				background: #000;
+				padding: 3px;
+				position: fixed;
+				bottom: 0;
+				width: 100%;
+			}
+			
+			form input {
+				border: 0;
+				padding: 10px;
+				width: 80%;
+				margin-right: .5%;
+			}
+			form select {
+				border: 0;
+				padding: 10px;
+				width: 9.6%;
+				/*margin-right: .5%;*/
+			}
+			
+			form button {
+				width: 9%;
+				background: rgb(130, 224, 255);
+				border: none;
+				padding: 10px;
+			}
+			
+			#messages {
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+			}
+			
+			#messages li {
+				padding: 5px 10px;
+			}
+			
+			.systemInfo_join {
+				background: #eee;
+			}
+			
+			.systemInfo_exit {
+				background: darksalmon;
+			}
+			
+			#userTotal {
+				height: 30px;
+				line-height: 30px;
+				background: #000000;
+				color: white;
+				text-align: center;
+			}
+			
+			.red {
+				color: white;
+				background: red;
+			}
+		</style>
+		<!--<script src="js/socket.io.js" type="text/javascript" charset="utf-8"></script>-->
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+		<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script>
+			$(function() {
+				//连接服务
+				var socket = io("ws://sdjk.yanlongli.com:3000");
+//				var socket = io("ws://localhost:3000");
+				//页面加载的时候随机生成一个用户名
+				var username = "user" + Math.floor(Math.random() * 1000);
+				//连接成功
+				socket.on('connect', function() {
+					//注册用户名
+					socket.emit('join', { username: username });
+
+				});
+				socket.on('system', function(res) {
+					console.log(res)
+					if(res.code == 'join') {
+						$('#messages').append($("<li class='systemInfo_join'>").text("欢迎用户    " + res.username + "  加入聊天室"));
+						$("#select").empty();
+						$("#select").append("<option class='form-control' value='ALL'>全体</option>")
+						for(var i =0;i<res.users.length;i++){
+							if(username!=res.users[i].username)$("#select").append("<option class='form-control' value='"+res.users[i].username+"'>"+res.users[i].username+"</option>")
+						}
+						
+						
+					} else if(res.code == 'exit') {
+						$('#messages').append($("<li class='systemInfo_exit'>").text("欢送用户    " + res.username + "  退出聊天室"));
+					}
+
+					$('#userTotal').html("当前在线人数" + res.userTotal);
+				});
+
+				$('form').submit(function() {
+					var msg = $('#m').val()
+					var toUser=false;
+					if($("#select option:selected").val()=="ALL"){
+						toUser=false;
+					}else{
+						toUser=$("#select option:selected").val()
+					}
+					socket.emit('open chat', { 'toUser': toUser, 'msg': msg });
+					$('#m').val('');
+					return false;
+				});
+				socket.on('open chat', function(res) {
+					console.log(res)
+					$("#temp li .username").html(res.username);
+					$("#temp li .msg").html(res.msg);
+					
+					if(res.code=='s'){
+						$("#temp li .msg").html("   对你说：   "+res.msg);
+					}else if(res.code=='z'){
+						$("#temp li .username").html("你");
+						$("#temp li .msg").html("   对 <span class='label label-info'>"+res.username+"</span>说：   "+res.msg);
+					}
+					
+					var temp = $("#temp").children().clone();
+					
+					$('#messages').append(temp);
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="userTotal"></div>
+		<ul id="messages"></ul>
+		<form action="" >
+			<select name="" id='select' class="">
+				
+			</select>
+			<input id="m" autocomplete="off" /><button>发送</button>
+		</form>
+		
+		
+		<div id="temp" class="hide">
+			<li>
+				<span class="label label-success username">
+					
+				</span>
+				<span class="msg">
+					
+				</span>
+			</li>
+		</div>
+	</body>
+</html>
