@@ -23,3 +23,6 @@
 如看到其他信息或报错等行为，请自行查看原因
 
 第五步 进入socketClient文件夹  用浏览器打开index.html 即可畅聊
+
+GitHub  https://github.com/Yanlong-LI/socketChat
+阿里云  https://code.aliyun.com/895185921/ssocketchat.git
