@@ -1,1 +1,1 @@
-@echo install express && npm install --save express && @echo install socket.io && npm install --save socket.io && @echo 安装完成 && pause &&start cmd /k start.bat
+@echo 正在配置环境 && npm install && @echo 安装完成 && pause 
