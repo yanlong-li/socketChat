@@ -2,7 +2,7 @@
 
 ## 本项目是基于socket.io的WEB网站内嵌即时通讯系统，单独编写用于学习交流使用，请勿用于非法行为,提供一个公共房间，可多人独立私聊 ##
 
-## 环境NODEJS、socket.io、Bootstarp##
+## 环境NODEJS、socket.io、Bootstarp ##
 
 第一步配置环境
 你需要下载NODEJS并安装 下面贴出NODEJS的官网
@@ -15,8 +15,10 @@
 	如：V7.7.4
 
 第三部 将下载或克隆的代码解压  进入socketServer文件夹  执行一次  one.bat 进行依赖库安装
-
-第四部  执行start.bat即可到 
+	
+	npm install
+	
+第四部  执行start.bat即可启动 默认为3000端口，可自行修改index.js配置。需要同步修改客户端下/js/index.js文件中的服务器地址端口号	
 
 	开放端口：3000
 
@@ -25,4 +27,5 @@
 第五步 进入socketClient文件夹  用浏览器打开index.html 即可畅聊
 
 GitHub  https://github.com/Yanlong-LI/socketChat
+
 阿里云  https://code.aliyun.com/895185921/ssocketchat.git
